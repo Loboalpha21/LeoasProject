@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="form">
+    <h2>Cadastro</h2>
+    <form method="POST" action="{{ url_for('cadastro') }}">
+      {{ form.csrf_token }}
+      <div class="form-group">
+        {{ form.nome.label }} {{ form.nome(class_='form-control', required=True, placeholder='Seu nome completo') }}
+      </div>
+      <div class="form-group">
+        {{ form.usuario.label }} {{ form.usuario(class_='form-control', required=True, placeholder='Seu nome de usuário') }}
+      </div>
+      <div class="form-group">
+        {{ form.senha_1.label }} {{ form.senha_1(class_='form-control', required=True, placeholder='Senha do usuário') }}
+      </div>
+      <div class="form-group">
+        {{ form.senha_2.label }} {{ form.senha_2(class_='form-control', required=True, placeholder='Confirme sua senha') }}
+      </div>
+      <div class="form-group">
+        <button type="submit">Cadastro</button>
+      </div>
+      <div class="form-group">
+        <a href="/login">Já tem Conta?</a>
+      </div>
+      <div class="form-group">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <span class="alert {{ category }}">{{ message }}</span>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </div>
+    </form>
+  </div>
+{% endblock %}
