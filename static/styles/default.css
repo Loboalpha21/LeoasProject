@@ -175,7 +175,7 @@ header nav a {
   border-radius:5px;
   padding:10px;
   animation-name: blink;
-  animation-duration: 1s;
+  animation-duration: 2s;
   animation-iteration-count: infinite;
   animation-direction:alternate;
 }
