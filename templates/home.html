@@ -1,30 +1,104 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="main-container">
-  <h1>Bem-vindo ao Restaurante Bonapetit D’Italia!</h1>
-  <p>O Restaurante Bonapetit D’Italia é o lugar perfeito para você desfrutar de refeições incríveis e momentos especiais.</p>
-  <hr>
+<style>
+  /* Estilos CSS personalizados */
+  .container {
+    background-color:white;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px;
+    text-align: center;
+    border-radius:0px 0px 15px 15px;
+  }
+  
+  .h1-local {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    color: #666;
+    margin-bottom: 30px;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff5722;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #ff7043;
+  }
 
-  <div class="menu-container">
-    <h2>Menu do Dia</h2>
-    <ul>
-      <li>
-        <h3>Prato Principal: Frango Grelhado</h3>
-        <p>Delicioso frango grelhado com acompanhamentos frescos da estação.</p>
-      </li>
-      <li>
-        <h3>Sobremesa: Torta de Chocolate</h3>
-        <p>Uma irresistível torta de chocolate feita com os melhores ingredientes.</p>
-      </li>
-      <li>
-        <h3>Bebida: Suco de Laranja Natural</h3>
-        <p>Refrescante suco de laranja feito na hora.</p>
-      </li>
-    </ul>
+  .menu {
+    margin-top: 50px;
+  }
+
+  .menu-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .menu-item img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 4px;
+  }
+
+  .menu-item-info {
+    margin-left: 20px;
+    text-align: left;
+  }
+
+  .menu-item-info h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  .menu-item-info p {
+    margin-bottom: 10px;
+  }
+</style>
+<div class="container">
+  <h1 class="h1-local">Bonapetit D’Italia</h1>
+  <p>Bem-vindo ao nosso renomado restaurante italiano! Desfrute de uma experiência gastronômica única, com pratos autênticos e ambiente acolhedor.</p>
+  <a href="#" class="btn btn-primary">Ver Cardápio</a>
+
+  <div class="menu">
+    <h2>Cardápio</h2>
+    <div class="menu-item">
+      <img src="pasta.jpg" alt="Pasta Italiana">
+      <div class="menu-item-info">
+        <h2>Pasta Italiana</h2>
+        <p>Deliciosa massa italiana preparada com ingredientes frescos e molho caseiro.</p>
+        <p><strong>Preço: R$ 30,00</strong></p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="pizza.jpg" alt="Pizza Italiana">
+      <div class="menu-item-info">
+        <h2>Pizza Italiana</h2>
+        <p>A verdadeira pizza italiana com massa fina, ingredientes selecionados e assada no forno a lenha.</p>
+        <p><strong>Preço: R$ 35,00</strong></p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="tiramisu.jpg" alt="Tiramisu">
+      <div class="menu-item-info">
+        <h2>Tiramisu</h2>
+        <p>A clássica sobremesa italiana com camadas de biscoito, café e creme de mascarpone.</p>
+        <p><strong>Preço: R$ 15,00</strong></p>
+      </div>
+    </div>
   </div>
 
-  <div class="link-container">
-    <a href="/login">Faça seu pedido agora!</a>
-  </div>
+  <p>Reserve sua mesa ou faça um pedido pelo telefone: <strong>(XX) XXXX-XXXX</strong></p>
 </div>
 {% endblock %}
