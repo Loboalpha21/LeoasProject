@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, flash, request, session
 from forms import LoginForm, CadastroForm
+from micro_db import MicroDB
 from replit import db
 import os
 
@@ -7,6 +8,8 @@ app = Flask(__name__)
 
 # Chave secreta do nosso site
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+
+user_db = MicroDB('users', './db/')
 
 
 # Página inicial
@@ -20,6 +23,17 @@ def index():
   return render_template('home.html', usuario=usuario)
 
 
+# Página inicial
+@app.route('/irc')
+def irc():
+  if 'logged_in' not in session:
+    flash('Faça login para acessar esta página', 'error')
+    return redirect('/login')
+
+  usuario = session['usuario']
+  return render_template('irc.html', usuario=usuario)
+
+
 # Login
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -27,14 +41,13 @@ def login():
   if request.method == 'POST' and form.validate_on_submit():
     usuario = form.usuario.data
     senha = form.senha.data
-    keys = db.keys()
 
-    if usuario not in keys:
+    if not user_db.get(usuario):
       flash('Usuário não existe', 'error')
       return render_template('login.html', form=form)
 
     # Verificar se a senha está correta
-    if db[usuario]['senha'] != senha:
+    if user_db.get(usuario).get("password") != senha:
       flash('Senha incorreta', 'error')
       return render_template('login.html', form=form)
 
@@ -56,17 +69,15 @@ def cadastro():
     usuario = form.usuario.data
     senha_1 = form.senha_1.data
     senha_2 = form.senha_2.data
-    keys = db.keys()
 
-    if usuario in keys:
+    if not user_db.get(usuario):
       flash('O usuário já existe', 'error')
       return render_template('cadastro.html', form=form)
 
     if senha_1 != senha_2:
       flash('A senha de confirmação está incorreta', 'error')
       return render_template('cadastro.html', form=form)
-
-    db[usuario] = {'nome': nome, 'senha': senha_1}
+    user_db.set(usuario, {"name": nome, "password": senha_1})
     flash('Cadastro realizado com sucesso', 'success')
     return redirect('/login')
 
